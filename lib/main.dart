@@ -25,8 +25,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: DatePicker()
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: EdgeInsets.only(top: constraints.maxHeight * 0.15),
+              child: Column(
+                children: [
+                  DatePicker(),
+                  SizedBox(height: constraints.maxHeight * 0.1),
+                  Text("data"),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -68,7 +82,7 @@ class _DatePickerState extends State<DatePicker> {
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
         child: Text(
           '${_selectedDate.year}/${_selectedDate.month}/${_selectedDate.day}',
-          style: TextStyle(fontSize: 18),
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
     );
